@@ -1,8 +1,0 @@
-prefix=/home/arvind/haptic_ws/devel
-
-Name: haptic_pkg
-Description: Description of haptic_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

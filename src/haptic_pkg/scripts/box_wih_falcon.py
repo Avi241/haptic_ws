@@ -94,29 +94,6 @@ if __name__ == "__main__":
             if(time.time() - prev_time >= 0.01):
                 prev_time=time.time()
 
-
-                # pub_box_force_left(joy_stick_sensitivity*pos_falcon_left[0],joy_stick_sensitivity*pos_falcon_left[1]) 
-                # pub_box_force_right(joy_stick_sensitivity*pos_falcon_right[0],joy_stick_sensitivity*pos_falcon_right[1])
-                # # print(force_box_left)
-                # pub_falcon_force_left(force_box_left[0],force_box_left[1])
-                # pub_falcon_force_right(force_box_right[0],force_box_right[1])
-
-                # Position Controllerr ############
-                # error_x = pos_falcon_left[0] -pos_box_left[0] 
-                # error_d_x = prev_error_x - error_x
-                # force_x = 30*error_x + 20*error_d_x
-                # prev_error_x = error_x
-
-                # print(error_x,force_x)
-                
-                # error_y = pos_box_left[1] - pos_falcon_left[1]
-                # error_d_y = prev_error_y - error_y
-                # force_y = 3*error_y + 1*error_d_y
-                # prev_error_y = error_y
-
-                # pub_box_force_left(force_x,0)
-
-
                 ############ States ########################################
                 """
                 pos_box_left  # give the positon of left box
@@ -131,6 +108,8 @@ if __name__ == "__main__":
                 """
                 ############################## 
                 
+
+                ## Write your code here ######33
 
                 ######## Publish force to box and falcon ########
                 """

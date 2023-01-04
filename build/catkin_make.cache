@@ -1,2 +1,0 @@
-haptic_pkg
--DCATKIN_DEVEL_PREFIX=/home/arvind/haptic_ws/devel -DCMAKE_INSTALL_PREFIX=/home/arvind/haptic_ws/install -G Unix Makefiles
