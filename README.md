@@ -18,7 +18,7 @@ source devel/setup.bash
 ### Run the simulation assuming that both the falcon are connected first left then right is connected 
 
 ```
-roslaunch haptic_pkg box_gazebo.launch
+roslaunch haptic_pkg box_with_falcon.launch
 ```
 
 ### The main control script is box_with_falcon.py which is localted at  ~/haptic_ws/src/haptic_pkg/scripts . Edit this script according to you and run using the below command in new terminal
