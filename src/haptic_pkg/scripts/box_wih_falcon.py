@@ -24,6 +24,8 @@ pos_box_right = np.array([0.0,0.0,0.0])
 force_box_left = np.array([0.0,0.0,0.0])
 force_box_right = np.array([0.0,0.0,0.0])
 
+vel_box = np.array([0.0,0.0,0.0])
+
 msg_box_force_left =  Wrench()
 msg_falcon_force_left = falconForces()
 
@@ -73,10 +75,11 @@ def callback_force_box_right(data):
     force_box_right = [data.wrench.force.x,data.wrench.force.y,data.wrench.force.z]
     
 def box_pos_cb(data):
-    global pos_box_left,pos_box_right
+    global pos_box_left,pos_box_right,vel_box
     box_pos = [data.pose[3].position.x,data.pose[3].position.y,data.pose[3].position.z]
     pos_box_left = [box_pos[0],box_pos[1]-0.25,box_pos[2]]
     pos_box_right = [box_pos[0],box_pos[1]+0.25,box_pos[2]]
+    vel_box = [data.twist[3].linear.x,data.twist[3].linear.y,data.twist[3].linear.z]
 
 
 rospy.Subscriber("/falcon/joystick", Joy, callback_pos_falcon_left,queue_size=1)
@@ -99,6 +102,7 @@ if __name__ == "__main__":
                 """
                 pos_box_left  # give the positon of left box
                 pos_box_right  # gives the position of right box
+                vel_box $ gives the velocity of the box
 
                 pos_falcon_left # gives the position of left falcon
                 pos_falcon_right # gives the position of right falocon
@@ -110,7 +114,7 @@ if __name__ == "__main__":
                 ############################## 
                 
 
-                ## Write your code here ######33
+                ## Write your code here ######
 
                 ######## Publish force to box and falcon ########
                 """
