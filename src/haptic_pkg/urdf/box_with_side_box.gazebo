@@ -89,7 +89,7 @@
 
   <joint
     name="left_contact_joint" type="fixed">
-    <origin xyz="-0.25 0 0" rpy="0 0 0" />
+    <origin xyz="0 -0.25  0" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="left_contact" />
   </joint>
@@ -117,7 +117,7 @@
 
   <joint
     name="right_contact_joint" type="fixed">
-    <origin xyz="0.25 0 0" rpy="0 0 0" />
+    <origin xyz="0 0.25 0" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="right_contact" />
   </joint>
