@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<robot name="falcon_cursor_right">
+    <link name="falcon_cursor_right">
+        <inertial>
+            <mass value="0.01" />
+            <origin xyz="0 0 0" />
+            <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+                iyy="0.01" iyz="0.0"
+                izz="0.01" />
+        </inertial>
+        <surface>
+            <friction>
+              <ode>
+                <mu>2</mu>
+                <mu2>2</mu2>
+              </ode>
+            </friction>
+          </surface>
+        <visual>
+            <geometry>
+                <box size="0.05 0.05 0.05" /> <!-- does not need to match collision -->
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" />
+            <geometry>
+                <box size="0.05 0.05 0.05" /> <!-- does not need to match collision -->
+            </geometry>
+        </collision>
+    </link>
+
+    <gazebo>
+        <plugin name="gazebo_ros_force_right" filename="libgazebo_ros_force.so">
+          <alwaysOn>true</alwaysOn>
+          <update>100</update>
+          <updateRate>100.0</updateRate>
+          <bodyName>falcon_cursor_right</bodyName>
+          <topicName>right/force</topicName>
+          <commandTopic>right/cmd_vel</commandTopic>
+          <odometryRate>100.0</odometryRate>
+          <robotBaseFrame>falcon_cursor_right</robotBaseFrame>
+          <publishOdometryTf>true</publishOdometryTf>
+          <yaw_velocity_p_gain>500</yaw_velocity_p_gain>
+          <x_velocity_p_gain>1000</x_velocity_p_gain>
+          <y_velocity_p_gain>1000</y_velocity_p_gain>
+          <cmdVelTimeOut>0.25</cmdVelTimeOut>
+        </plugin>
+      </gazebo>
+    
+    
+      <gazebo>
+        <plugin name="gazebo_right_ft_sensor" filename="libgazebo_ros_f3d.so">
+          <updateRate>100.0</updateRate>
+          <topicName>right/force_feedback</topicName>
+          <bodyName>falcon_cursor_right</bodyName>
+        </plugin>
+      </gazebo>
+
+</robot>
