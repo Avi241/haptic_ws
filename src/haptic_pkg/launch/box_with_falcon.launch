@@ -1,7 +1,7 @@
 <launch>
-    <include file="$(find haptic_pkg)/launch/chatgpt_box.launch" />
+    <include file="$(find haptic_pkg)/launch/box_gazebo.launch" />
     <node name="ros_falcon_left" type="joystick" pkg="ros_falcon" />
     <node name="ros_falcon_right" type="joystick1" pkg="ros_falcon" />
-    <node name="positon_falcon" type="control_box.py" pkg="haptic_pkg" />
-    <node name="force_falcon" type="publish_falcon.py" pkg="haptic_pkg" />
+    <!-- <node name="positon_falcon" type="control_box_with_force.py" pkg="haptic_pkg" /> -->
+    <!-- <node name="force_falcon" type="publish_falcon.py" pkg="haptic_pkg" /> -->
 </launch>

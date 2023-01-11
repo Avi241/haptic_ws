@@ -18,13 +18,13 @@
           </surface>
         <visual>
             <geometry>
-                <box size="0.4 0.4 0.4" /> <!-- does not need to match collision -->
+                <box size="0.38 0.4 0.15" /> <!-- does not need to match collision -->
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0 0" />
             <geometry>
-                <box size="0.4 0.4 0.4" /> <!-- does not need to match collision -->
+                <box size="0.38 0.4 0.15" /> <!-- does not need to match collision -->
             </geometry>
         </collision>
     </link>

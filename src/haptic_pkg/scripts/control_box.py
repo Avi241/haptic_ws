@@ -3,7 +3,7 @@
 import rospy
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import Pose
-from gazebo_msgs.msg import ModelState
+from gazebo_msgs.msg import ModelState,ModelStates
 
 # Global variable to store the model's pose
 model_pose_left = Pose()
@@ -45,6 +45,13 @@ def joy_callback_right(msg):
     model_state.reference_frame = "world"
     model_state.pose = model_pose_right
     pub.publish(model_state)
+
+def box_pos_cb(data):
+    global pos_box_left,pos_box_right,vel_box
+    box_pos = [data.pose[3].position.x,data.pose[3].position.y,data.pose[3].position.z]
+    pos_box_left = [box_pos[0],box_pos[1]-0.25,box_pos[2]]
+    pos_box_right = [box_pos[0],box_pos[1]+0.25,box_pos[2]]
+    vel_box = [data.twist[3].linear.x,data.twist[3].linear.y,data.twist[3].linear.z]
 
 def control_model():
     rospy.init_node('control_model')

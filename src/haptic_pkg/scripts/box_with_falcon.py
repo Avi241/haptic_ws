@@ -32,27 +32,31 @@ msg_falcon_force_left = falconForces()
 msg_box_force_right =  Wrench()
 msg_falcon_force_right = falconForces()
 
-joy_stick_sensitivity = 30
+joy_stick_sensitivity = 50
 
-def pub_box_force_left(force_x,force_y):
+def pub_box_force_left(force_x,force_y,force_z=0):
     msg_box_force_left.force.x = force_x
     msg_box_force_left.force.y = force_y
+    msg_box_force_left.force.z = force_z
     pub_left_force_box.publish(msg_box_force_left)
 
 
-def pub_box_force_right(force_x,force_y):
+def pub_box_force_right(force_x,force_y,force_z=0):
     msg_box_force_right.force.x = force_x
     msg_box_force_right.force.y = force_y
+    msg_box_force_right.force.z = force_z
     pub_right_force_box.publish(msg_box_force_right)
 
-def pub_falcon_force_left(force_x,force_y):
+def pub_falcon_force_left(force_x,force_y,force_z=0):
     msg_falcon_force_left.X=force_x
     msg_falcon_force_left.Y=force_y
+    msg_falcon_force_left.Z=force_z
     pub_left_force_falcon.publish(msg_falcon_force_left)
 
-def pub_falcon_force_right(force_x,force_y):
+def pub_falcon_force_right(force_x,force_y,force_z=0):
     msg_falcon_force_right.X=force_x
     msg_falcon_force_right.Y=force_y
+    msg_falcon_force_right.Z=force_z
     pub_right_force_falcon.publish(msg_falcon_force_right)
 
 def callback_pos_falcon_left(data):
@@ -77,8 +81,8 @@ def callback_force_box_right(data):
 def box_pos_cb(data):
     global pos_box_left,pos_box_right,vel_box
     box_pos = [data.pose[3].position.x,data.pose[3].position.y,data.pose[3].position.z]
-    pos_box_left = [box_pos[0],box_pos[1]-0.25,box_pos[2]]
-    pos_box_right = [box_pos[0],box_pos[1]+0.25,box_pos[2]]
+    pos_box_left = [box_pos[0]-0.25,box_pos[1],box_pos[2]]
+    pos_box_right = [box_pos[0]+0.25,box_pos[1],box_pos[2]]
     vel_box = [data.twist[3].linear.x,data.twist[3].linear.y,data.twist[3].linear.z]
 
 
@@ -112,16 +116,40 @@ if __name__ == "__main__":
                 
                 """
                 ############################## 
-                
+
 
                 ## Write your code here ######
+                force_left_box_x = joy_stick_sensitivity*pos_falcon_left[0]
+                force_left_box_y = joy_stick_sensitivity*pos_falcon_left[1]
+                force_left_box_z = joy_stick_sensitivity*pos_falcon_left[2]
+
+                force_right_box_x = joy_stick_sensitivity*pos_falcon_right[0]
+                force_right_box_y = joy_stick_sensitivity*pos_falcon_right[1]
+                force_right_box_z = joy_stick_sensitivity*pos_falcon_right[2]
+
+                force_left_falcon_x = force_box_left[0]
+                force_left_falcon_y = force_box_left[1]
+                force_left_falcon_z = force_box_left[2]
+
+                force_right_falcon_x = force_box_right[0]
+                force_right_falcon_y = force_box_right[1]
+                force_right_falcon_z = force_box_right[2]
+
+
+                ######### Publish _force ##########
+
+                pub_box_force_left(force_left_box_x,force_left_box_y) 
+                pub_box_force_right(force_right_box_x,force_right_box_y)
+                pub_falcon_force_left(force_left_falcon_x,force_left_falcon_y)
+                pub_falcon_force_right(force_right_falcon_x,force_right_falcon_y)
 
                 ######## Publish force to box and falcon ########
                 """
-                pub_box_force_left(force_box_x,force_box_y) 
-                pub_box_force_right(force_box_x,force_box_y)
-                pub_falcon_force_left(force_falcon_x,force_falcon_y)
-                pub_falcon_force_right(force_falcon_x,force_falcon_y)
+                pub_box_force_left(force_left_box_x,force_left_box_y) 
+                pub_box_force_right(force_right_box_x,force_right_box_y)
+                pub_falcon_force_left(force_left_falcon_x,force_left_falcon_y)
+                pub_falcon_force_right(force_right_falcon_x,force_right_falcon_y)
+
                 
                 """
 
